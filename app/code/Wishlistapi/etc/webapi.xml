@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
+    <route url="/V1/wishlistapi/addtowishlist" method="GET">
+        <service class="Dharmendra\Wishlistapi\Api\WishlistapiInterface" method="addToWishlist"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/wishlistapi/items" method="GET">
+        <service class="Dharmendra\Wishlistapi\Api\WishlistapiInterface" method="getWishlistForCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/wishlistapi/movetocart" method="GET">
+        <service class="Dharmendra\Wishlistapi\Api\WishlistapiInterface" method="moveToCart"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/wishlistapi/delete" method="GET">
+        <service class="Dharmendra\Wishlistapi\Api\WishlistapiInterface" method="deleteWishlistItemForCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

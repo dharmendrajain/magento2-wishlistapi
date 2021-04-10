@@ -12,6 +12,8 @@ use Magento\Store\Model\App\Emulation as AppEmulation;
 use Magento\Wishlist\Controller\WishlistProviderInterface;
 use Magento\Wishlist\Model\LocaleQuantityProcessor;
 use Magento\Wishlist\Model\Item\OptionFactory;
+use Magento\Checkout\Model\Cart as CheckoutCart;
+use Magento\Catalog\Helper\Product;
 
 class Wishlistapi implements WishlistapiInterface
 {
@@ -69,6 +71,16 @@ class Wishlistapi implements WishlistapiInterface
      */
     private $optionFactory;
 
+    /**
+     * @var CheckoutCart
+     */
+    protected $cart;
+
+    /**
+     * @var Product
+     */
+    protected $productHelper;
+
     public function __construct(
         CustomerRegistry $customerRegistry,
         \Magento\Wishlist\Model\WishlistFactory $wishlistRepository,
@@ -81,7 +93,9 @@ class Wishlistapi implements WishlistapiInterface
         WishlistProviderInterface $wishlistProvider,
         LocaleQuantityProcessor $quantityProcessor,
         OptionFactory $optionFactory,
-        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
+        CheckoutCart $cart,
+        Product $productHelper
     )
     {
         $this->customerRegistry = $customerRegistry;
@@ -96,6 +110,8 @@ class Wishlistapi implements WishlistapiInterface
         $this->quantityProcessor = $quantityProcessor;
         $this->optionFactory = $optionFactory;
         $this->_productRepository = $productRepository;
+        $this->cart = $cart;
+        $this->productHelper = $productHelper;
     }
 
    /**
